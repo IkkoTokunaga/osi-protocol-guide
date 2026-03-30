@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "OSI Protocol Guide",
   description: "個人用 OSI 参照モデル・プロトコル図鑑",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
