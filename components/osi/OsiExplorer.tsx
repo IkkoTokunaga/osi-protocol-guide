@@ -154,6 +154,15 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
         desktopSidebarWidthClass,
       ].join(" ")}
     >
+      <button
+        type="button"
+        onClick={() => setMobileMenuOpen(true)}
+        className="fixed left-3 top-3 z-50 rounded-xl border border-white/10 bg-slate-900/90 p-2.5 text-slate-100 shadow-lg backdrop-blur lg:hidden"
+        aria-label="メニューを開く"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
+
       <aside
         className={[
           "fixed bottom-0 left-0 top-0 z-40 hidden border-r border-white/10 bg-slate-950/95 p-3 backdrop-blur lg:block",
@@ -296,20 +305,8 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                 左のレイヤーを選択すると、プロトコル/コマンド/メモを右側に表示します。
               </p>
             </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(true)}
-                className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-xs text-slate-200 lg:hidden"
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <Menu className="h-4 w-4" />
-                  Menu
-                </span>
-              </button>
-              <div className="rounded-xl border border-white/10 bg-black/20 px-4 py-2 text-xs text-slate-300">
-                Click a layer, debug faster.
-              </div>
+            <div className="rounded-xl border border-white/10 bg-black/20 px-4 py-2 text-xs text-slate-300">
+              Click a layer, debug faster.
             </div>
           </div>
         </header>
