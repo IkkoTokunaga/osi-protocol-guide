@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { ComponentType } from "react";
+import { Zen_Kaku_Gothic_New } from "next/font/google";
 import {
   Antenna,
   Cable,
@@ -47,6 +48,11 @@ type Theme = {
   chipBg: string;
   memoBg: string;
 };
+
+const titleFont = Zen_Kaku_Gothic_New({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+});
 
 const themeById: Record<OsiLayer["id"], Theme> = {
   L7: {
@@ -143,7 +149,12 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/90">
                 OSI AT A GLANCE
               </p>
-              <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-5xl">
+              <h1
+                className={[
+                  titleFont.className,
+                  "mt-2 bg-gradient-to-r from-cyan-200 via-sky-300 to-violet-300 bg-clip-text text-3xl font-black tracking-[0.06em] text-transparent drop-shadow-[0_0_24px_rgba(34,211,238,0.28)] sm:text-5xl",
+                ].join(" ")}
+              >
                 OSI参照モデル 図鑑
               </h1>
               <p className="mt-3 max-w-3xl text-sm text-slate-300 sm:text-base">
