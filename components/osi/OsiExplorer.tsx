@@ -17,6 +17,10 @@ export type OsiLayer = {
   title: string;
   protocols: string[];
   commands: string[];
+  protocolDetails: Array<{
+    name: string;
+    detailHtml: string;
+  }>;
   memoHtml: string;
 };
 
@@ -223,23 +227,22 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
 
                 <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1fr]">
                   <div className="rounded-xl border border-white/10 bg-black/15 p-4">
-                    <h3 className="text-sm font-bold text-slate-200">プロトコル</h3>
+                    <h3 className="text-sm font-bold text-slate-200">プロトコル一覧</h3>
+                    <p className="mt-2 text-xs text-slate-400">
+                      {active.protocols.length} protocols
+                    </p>
                     <div className="mt-3 flex flex-wrap gap-2">
-                      {active.protocols.length > 0 ? (
-                        active.protocols.map((p) => (
-                          <span
-                            key={p}
-                            className={[
-                              "rounded-full border border-white/10 px-3 py-1 text-xs font-semibold",
-                              theme.chipBg,
-                            ].join(" ")}
-                          >
-                            {p}
-                          </span>
-                        ))
-                      ) : (
-                        <p className="text-sm text-slate-400">未設定</p>
-                      )}
+                      {active.protocols.map((p) => (
+                        <span
+                          key={p}
+                          className={[
+                            "rounded-full border border-white/10 px-3 py-1 text-xs font-semibold",
+                            theme.chipBg,
+                          ].join(" ")}
+                        >
+                          {p}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
@@ -262,11 +265,51 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                 </div>
 
                 <div className="mt-5 rounded-xl border border-white/10 bg-black/15 p-4">
+                  <h3 className="text-sm font-bold text-slate-200">
+                    プロトコル詳細（アコーディオン）
+                  </h3>
+                  <div className="mt-3 space-y-2">
+                    {active.protocolDetails.length > 0 ? (
+                      active.protocolDetails.map((protocol) => (
+                        <details
+                          key={protocol.name}
+                          className="group rounded-xl border border-white/10 bg-white/5 open:bg-white/10"
+                        >
+                          <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-slate-100 marker:content-none">
+                            <span className="inline-flex items-center gap-2">
+                              <span
+                                className={["h-2.5 w-2.5 rounded-full", theme.chipBg].join(" ")}
+                              />
+                              {protocol.name}
+                            </span>
+                          </summary>
+                          <div
+                            className="osiMemo border-t border-white/10 px-4 py-3 text-sm text-slate-200"
+                            dangerouslySetInnerHTML={{ __html: protocol.detailHtml }}
+                          />
+                        </details>
+                      ))
+                    ) : (
+                      <p className="text-sm text-slate-400">
+                        プロトコル詳細がまだありません。
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-5 rounded-xl border border-white/10 bg-black/15 p-4">
                   <h3 className="text-sm font-bold text-slate-200">メモ</h3>
-                  <div
-                    className={["osiMemo mt-3 rounded-xl border border-white/10 p-4", theme.memoBg].join(" ")}
-                    dangerouslySetInnerHTML={{ __html: active.memoHtml }}
-                  />
+                  {active.memoHtml ? (
+                    <div
+                      className={[
+                        "osiMemo mt-3 rounded-xl border border-white/10 p-4",
+                        theme.memoBg,
+                      ].join(" ")}
+                      dangerouslySetInnerHTML={{ __html: active.memoHtml }}
+                    />
+                  ) : (
+                    <p className="mt-3 text-sm text-slate-400">メモは未設定です。</p>
+                  )}
                 </div>
               </>
             ) : (

@@ -34,6 +34,27 @@ function normalizeStringArray(v: unknown): string[] {
   return [];
 }
 
+function parseProtocolSections(markdown: string): Array<{ name: string; body: string }> {
+  const sections: Array<{ name: string; body: string }> = [];
+  const headingPattern = /^###\s+(.+)$/gm;
+  const matches = [...markdown.matchAll(headingPattern)];
+
+  for (let i = 0; i < matches.length; i += 1) {
+    const current = matches[i];
+    const next = matches[i + 1];
+    const start = (current.index ?? 0) + current[0].length;
+    const end = next?.index ?? markdown.length;
+    const body = markdown.slice(start, end).trim();
+    const name = current[1]?.trim() ?? "";
+
+    if (name) {
+      sections.push({ name, body });
+    }
+  }
+
+  return sections;
+}
+
 export default async function Page() {
   const contentDir = path.join(process.cwd(), "content");
 
@@ -47,13 +68,26 @@ export default async function Page() {
       const title = String(data.title ?? id);
       const protocols = normalizeStringArray(data.protocols);
       const commands = normalizeStringArray(data.commands);
-      const memoHtml = await markdownToHtml(parsed.content);
+      const contentParts = parsed.content.split(/^##\s+メモ\s*$/m);
+      const protocolArea = contentParts[0] ?? "";
+      const memoMarkdown = (contentParts[1] ?? "").trim();
+
+      const parsedProtocolSections = parseProtocolSections(protocolArea);
+      const protocolDetails = await Promise.all(
+        parsedProtocolSections.map(async (section) => ({
+          name: section.name,
+          detailHtml: await markdownToHtml(section.body),
+        })),
+      );
+
+      const memoHtml = memoMarkdown ? await markdownToHtml(memoMarkdown) : "";
 
       return {
         id,
         title,
         protocols,
         commands,
+        protocolDetails,
         memoHtml,
       };
     }),
