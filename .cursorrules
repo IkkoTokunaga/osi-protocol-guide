@@ -1,0 +1,13 @@
+# プロジェクト基本方針
+- ホストOS（WSL/Windows）に直接パッケージをインストールしない。npm / npx もホストでは使わない。
+- すべての実行、ビルド、`npm install` / lock 更新 / パッケージ追加は Docker コンテナ内で行う。
+- 例: `package-lock.json` の生成・更新 → `docker compose run --rm app npm install --package-lock-only`
+- 例: パッケージ追加 → `docker compose run --rm app npm install <package>`（開発サーバ起動中なら `docker compose exec app npm install <package>` でも可）
+
+# 技術スタック
+- Next.js (App Router), Tailwind CSS, Lucide React
+- 詳細はルートの requirements.md を参照。
+
+# 開発ガイドライン
+- コンポーネントは `components/` に配置。
+- 各レイヤーのコンテンツは `content/*.md` から取得する構成にする。
