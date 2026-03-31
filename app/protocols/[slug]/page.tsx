@@ -211,7 +211,7 @@ export default async function ProtocolDetailPage({
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_10%,_#1e293b_0%,_#0b1220_45%,_#060b16_100%)] px-4 py-8 text-slate-100 sm:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_10%,_#1e293b_0%,_#0b1220_45%,_#060b16_100%)] px-2 py-8 text-slate-100 sm:px-8">
       <div aria-hidden="true" className="packetField">
         <svg className="packetSvg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
           <defs>
@@ -245,7 +245,7 @@ export default async function ProtocolDetailPage({
       <div className="mx-auto max-w-6xl space-y-6">
         <div
           className={[
-            "rounded-2xl border border-white/25 px-5 py-3 text-white shadow-lg",
+            "rounded-2xl border border-white/25 px-3 py-2.5 text-white shadow-lg sm:px-5 sm:py-3",
             accent.solid,
           ].join(" ")}
         >
@@ -264,7 +264,7 @@ export default async function ProtocolDetailPage({
           ].join(" ")}
         >
           <div className={["h-1.5 w-full", accent.solid].join(" ")} />
-          <div className="p-6 sm:p-8">
+          <div className="p-4 sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-300/90">
               OSI AT A GLANCE
             </p>
@@ -293,12 +293,12 @@ export default async function ProtocolDetailPage({
 
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-4">
-            <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+            <section className={["rounded-2xl border bg-slate-900/75 p-3.5 backdrop-blur-sm sm:p-5", accent.cardRing].join(" ")}>
               <h2 className="text-lg font-bold text-slate-100">概要</h2>
               <div className="osiMemo mt-3 text-sm text-slate-200" dangerouslySetInnerHTML={{ __html: protocol.detailHtml }} />
             </section>
 
-            <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+            <section className={["rounded-2xl border bg-slate-900/75 p-3.5 backdrop-blur-sm sm:p-5", accent.cardRing].join(" ")}>
               <h2 className="text-lg font-bold text-slate-100">CCNA対策ポイント</h2>
               <ul className="mt-3 space-y-2 text-sm text-slate-200">
                 {ccnaPoints.map((point) => (
@@ -309,7 +309,7 @@ export default async function ProtocolDetailPage({
               </ul>
             </section>
 
-            <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+            <section className={["rounded-2xl border bg-slate-900/75 p-3.5 backdrop-blur-sm sm:p-5", accent.cardRing].join(" ")}>
               <h2 className="text-lg font-bold text-slate-100">実戦での使い方</h2>
               <div className="mt-3 space-y-3 text-sm text-slate-200">
                 <p>
@@ -334,7 +334,7 @@ export default async function ProtocolDetailPage({
             </section>
           </div>
 
-          <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+          <section className={["rounded-2xl border bg-slate-900/75 p-3.5 backdrop-blur-sm sm:p-5", accent.cardRing].join(" ")}>
             <h2 className="text-lg font-bold text-slate-100">理解度チェック</h2>
             <p className="mt-1 text-xs text-slate-400">問題を開いて選択肢を確認し、答えは「答えを見る」で表示します。</p>
             <div className="mt-3 space-y-3">

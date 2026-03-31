@@ -162,7 +162,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_10%,_#1e293b_0%,_#0b1220_45%,_#060b16_100%)] px-4 py-8 text-slate-100 sm:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_10%,_#1e293b_0%,_#0b1220_45%,_#060b16_100%)] px-2 py-8 text-slate-100 sm:px-8">
       <div aria-hidden="true" className="packetField">
         <svg className="packetSvg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
           <defs>
@@ -220,7 +220,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
         </svg>
       </div>
       <div className="mx-auto max-w-7xl">
-        <header className="relative z-10 mb-6 rounded-2xl bg-transparent p-6">
+        <header className="relative z-10 mb-6 rounded-2xl bg-transparent p-3 sm:p-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-300/90">
               OSI AT A GLANCE
@@ -291,7 +291,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                     </summary>
 
                       {selected ? (
-                        <div className="p-4 sm:p-5">
+                        <div className="p-3 sm:p-5">
                           <h2 className="text-2xl font-black tracking-tight text-slate-800">
                             {layer.id}: {layer.title}
                           </h2>
