@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import type { ComponentType } from "react";
 import { Zen_Kaku_Gothic_New } from "next/font/google";
@@ -14,17 +15,8 @@ import {
   Waves,
 } from "lucide-react";
 
-export type OsiLayer = {
-  id: "L1" | "L2" | "L3" | "L4" | "L5" | "L6" | "L7";
-  title: string;
-  protocols: string[];
-  commands: string[];
-  protocolDetails: Array<{
-    name: string;
-    detailHtml: string;
-  }>;
-  memoHtml: string;
-};
+import type { OsiLayer } from "@/lib/osiContent";
+export type { OsiLayer } from "@/lib/osiContent";
 
 const iconById: Record<
   OsiLayer["id"],
@@ -375,6 +367,14 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                                     className="osiMemo border-t border-slate-300 px-4 py-3 text-sm text-slate-700"
                                     dangerouslySetInnerHTML={{ __html: protocol.detailHtml }}
                                   />
+                                  <div className="border-t border-slate-300 px-4 py-3">
+                                    <Link
+                                      href={`/protocols/${protocol.slug}`}
+                                      className="inline-flex rounded-md border border-slate-300 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-200"
+                                    >
+                                      もっと詳細を見る
+                                    </Link>
+                                  </div>
                                 </details>
                               ))
                             ) : (

@@ -11,7 +11,13 @@ const layers: OsiLayer[] = [
     protocolDetails: [
       {
         name: "HTTP / HTTPS",
+        slug: "http-https",
         detailHtml: "<p>Web通信の基本プロトコル。</p>",
+        rawBody: "",
+        role: "Web通信の基本プロトコル",
+        practicalUse: "4xx/5xxの傾向を確認",
+        checkPoint: "ステータスコードと応答時間",
+        ccnaFocus: "主要アプリプロトコルの役割整理",
       },
     ],
     memoHtml: "<p>L7メモ</p>",
@@ -24,7 +30,13 @@ const layers: OsiLayer[] = [
     protocolDetails: [
       {
         name: "TCP",
+        slug: "tcp",
         detailHtml: "<p>再送と順序保証を提供。</p>",
+        rawBody: "",
+        role: "再送と順序保証を提供",
+        practicalUse: "3-way handshake失敗を確認",
+        checkPoint: "再送統計とセッション状態",
+        ccnaFocus: "3-way handshake理解",
       },
     ],
     memoHtml: "<p>L4メモ</p>",
@@ -66,18 +78,13 @@ describe("OsiExplorer", () => {
     ).toBeInTheDocument();
   });
 
-  test("renders protocol detail blocks as accordion items", () => {
+  test("shows protocol links to detail pages", () => {
     render(<OsiExplorer layers={layers} />);
     fireEvent.click(screen.getByRole("button", { name: /L7/ }));
 
-    const summary = screen.getByText("HTTP / HTTPS");
-    const details = summary.closest("details");
-    expect(details).not.toBeNull();
-    expect(details).not.toHaveAttribute("open");
-
-    fireEvent.click(summary);
-
-    expect(details).toHaveAttribute("open");
-    expect(screen.getByText("Web通信の基本プロトコル。")).toBeInTheDocument();
+    expect(screen.getByText("HTTP / HTTPS")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("HTTP / HTTPS"));
+    const link = screen.getByRole("link", { name: "もっと詳細を見る" });
+    expect(link).toHaveAttribute("href", "/protocols/http-https");
   });
 });
