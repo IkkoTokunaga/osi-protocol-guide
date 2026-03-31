@@ -351,14 +351,24 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                                   className="group rounded-xl border-2 border-slate-300 bg-white/85 open:bg-slate-50/80"
                                 >
                                   <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-slate-700 marker:content-none">
-                                    <span className="inline-flex items-center gap-2">
+                                    <span className="flex items-center justify-between gap-3">
+                                      <span className="inline-flex items-center gap-2">
+                                        <span
+                                          className={[
+                                            "h-2.5 w-2.5 rounded-full",
+                                            layerTheme.chipBg,
+                                          ].join(" ")}
+                                        />
+                                        {protocol.name}
+                                      </span>
                                       <span
                                         className={[
-                                          "h-2.5 w-2.5 rounded-full",
-                                          layerTheme.chipBg,
+                                          "inline-flex h-5 w-5 items-center justify-center rounded-md border border-slate-300 bg-white/70 transition-transform duration-200",
+                                          "group-open:rotate-180",
                                         ].join(" ")}
-                                      />
-                                      {protocol.name}
+                                      >
+                                        <ChevronDown className="h-3.5 w-3.5 text-slate-600" />
+                                      </span>
                                     </span>
                                   </summary>
                                   <div
