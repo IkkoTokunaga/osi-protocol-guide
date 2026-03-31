@@ -6,6 +6,7 @@ import { Zen_Kaku_Gothic_New } from "next/font/google";
 import {
   Antenna,
   Cable,
+  ChevronDown,
   Layers3,
   Lock,
   Monitor,
@@ -121,42 +122,35 @@ const themeById: Record<OsiLayer["id"], Theme> = {
 
 const layerVisualById: Record<
   OsiLayer["id"],
-  { gradient: string; subtitle: string; protocolHint: string }
+  { gradient: string; subtitle: string }
 > = {
   L7: {
     gradient: "from-fuchsia-500 via-pink-500 to-rose-500",
     subtitle: "アプリケーションサービス",
-    protocolHint: "HTTP / Mail / DNS",
   },
   L6: {
     gradient: "from-violet-500 via-purple-500 to-indigo-500",
     subtitle: "データの表現、暗号化",
-    protocolHint: "TLS / JPEG / ASCII",
   },
   L5: {
     gradient: "from-sky-500 via-blue-500 to-cyan-500",
     subtitle: "セッション管理",
-    protocolHint: "Session / RPC",
   },
   L4: {
     gradient: "from-lime-500 via-green-500 to-emerald-500",
     subtitle: "信頼性の高い通信",
-    protocolHint: "TCP / UDP",
   },
   L3: {
     gradient: "from-amber-400 via-yellow-400 to-orange-400",
     subtitle: "ルーティング、経路選択",
-    protocolHint: "IP / ICMP",
   },
   L2: {
     gradient: "from-orange-500 via-amber-500 to-yellow-500",
     subtitle: "隣接ノード間の通信",
-    protocolHint: "Ethernet / MAC",
   },
   L1: {
     gradient: "from-rose-500 via-red-500 to-orange-500",
     subtitle: "電気・物理的な接続",
-    protocolHint: "Cable / Radio",
   },
 };
 
@@ -219,8 +213,9 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                         <button
                           type="button"
                           onClick={() => toggleLayer(layer.id)}
+                          aria-label={`${layer.id} ${layer.title}`}
                           className={[
-                            "group grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-xl border px-4 py-3 text-left text-white transition sm:px-6",
+                            "group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-white transition sm:px-6",
                             "bg-gradient-to-r",
                             visual.gradient,
                             selected
@@ -229,7 +224,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                           ].join(" ")}
                         >
                           <div className="flex items-center gap-3">
-                            <LayerIcon className={["h-5 w-5", layerTheme.icon, "text-white"].join(" ")} />
+                            <LayerIcon className="h-5 w-5 text-white" />
                             <div>
                               <p
                                 className={[
@@ -244,10 +239,13 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                               </p>
                             </div>
                           </div>
-                          <div className="rounded-lg border border-white/35 bg-white/20 px-3 py-1 text-right">
-                            <p className="text-xs font-extrabold tracking-wider text-white/95">{layer.id}</p>
-                            <p className="text-[11px] text-white/90">{visual.protocolHint}</p>
-                          </div>
+                          <ChevronDown
+                            className={[
+                              "h-4.5 w-4.5 rounded-md bg-white/25 p-0.5 text-white transition-transform duration-200 group-hover:bg-white/35",
+                              selected ? "rotate-180" : "rotate-0",
+                            ].join(" ")}
+                            aria-hidden="true"
+                          />
                         </button>
                       </summary>
 
