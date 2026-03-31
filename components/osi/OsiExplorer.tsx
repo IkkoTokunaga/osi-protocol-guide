@@ -122,34 +122,34 @@ const themeById: Record<OsiLayer["id"], Theme> = {
 
 const layerVisualById: Record<
   OsiLayer["id"],
-  { gradient: string; subtitle: string }
+  { bg: string; subtitle: string }
 > = {
   L7: {
-    gradient: "from-fuchsia-500 via-pink-500 to-rose-500",
+    bg: "bg-rose-500",
     subtitle: "アプリケーションサービス",
   },
   L6: {
-    gradient: "from-violet-500 via-purple-500 to-indigo-500",
+    bg: "bg-violet-500",
     subtitle: "データの表現、暗号化",
   },
   L5: {
-    gradient: "from-sky-500 via-blue-500 to-cyan-500",
+    bg: "bg-cyan-500",
     subtitle: "セッション管理",
   },
   L4: {
-    gradient: "from-lime-500 via-green-500 to-emerald-500",
+    bg: "bg-emerald-500",
     subtitle: "信頼性の高い通信",
   },
   L3: {
-    gradient: "from-amber-400 via-yellow-400 to-orange-400",
+    bg: "bg-amber-500",
     subtitle: "ルーティング、経路選択",
   },
   L2: {
-    gradient: "from-orange-500 via-amber-500 to-yellow-500",
+    bg: "bg-orange-500",
     subtitle: "隣接ノード間の通信",
   },
   L1: {
-    gradient: "from-rose-500 via-red-500 to-orange-500",
+    bg: "bg-red-500",
     subtitle: "電気・物理的な接続",
   },
 };
@@ -170,84 +170,173 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
   };
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff,_#f8fafc_50%,_#eef2ff)] px-4 py-8 text-slate-800 sm:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_10%,_#1e293b_0%,_#0b1220_45%,_#060b16_100%)] px-4 py-8 text-slate-100 sm:px-8">
+      <div aria-hidden="true" className="packetField">
+        <svg className="packetSvg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="packetOrb" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="45%" stopColor="#dbeafe" />
+              <stop offset="100%" stopColor="#93c5fd" />
+            </radialGradient>
+          </defs>
+          <path id="traceA" className="packetLine" d="M0 84 H150 V52 H260 V0" />
+          <path id="traceB" className="packetLine" d="M0 156 H120 V196 H290 V246 H390 V362 H620" />
+          <path id="traceC" className="packetLine" d="M1200 116 H1040 V86 H890 V0" />
+          <path id="traceD" className="packetLine" d="M1200 236 H1110 V270 H960 V356 H910 V520" />
+          <path id="traceE" className="packetLine" d="M0 300 H80 V340 H190 V500 H240 V640 H430" />
+          <path id="traceF" className="packetLine" d="M1200 342 H980 V318 H860 V254 H740 V190 H540" />
+          <path id="traceG" className="packetLine" d="M0 446 H170 V490 H320 V620 H360 V750 H620" />
+          <path id="traceH" className="packetLine" d="M1200 492 H1080 V530 H930 V660 H880 V780 H690" />
+          <path id="traceI" className="packetLine" d="M0 586 H60 V544 H160 V476 H220 V410 H300" />
+          <path id="traceJ" className="packetLine" d="M1200 628 H1140 V596 H1060 V520 H1000 V430 H900" />
+          <path id="traceK" className="packetLine" d="M460 0 V88 H520 V142 H600 V210 H660 V390" />
+          <path id="traceL" className="packetLine" d="M580 800 V736 H650 V700 H760 V650 H840 V520" />
+          <path id="traceM" className="packetLine" d="M760 0 V56 H820 V110 H910 V160 H1000 V290" />
+          <path id="traceN" className="packetLine" d="M260 800 V748 H330 V720 H410 V660 H460 V560" />
+
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="14s" repeatCount="indefinite">
+              <mpath href="#traceA" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="19s" repeatCount="indefinite">
+              <mpath href="#traceB" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="16s" repeatCount="indefinite">
+              <mpath href="#traceC" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="21s" repeatCount="indefinite">
+              <mpath href="#traceD" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="17s" repeatCount="indefinite">
+              <mpath href="#traceE" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="23s" repeatCount="indefinite">
+              <mpath href="#traceF" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="24s" repeatCount="indefinite">
+              <mpath href="#traceG" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="21s" repeatCount="indefinite">
+              <mpath href="#traceH" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="16.5s" repeatCount="indefinite">
+              <mpath href="#traceI" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="18s" repeatCount="indefinite">
+              <mpath href="#traceJ" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="15s" repeatCount="indefinite">
+              <mpath href="#traceK" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="20s" repeatCount="indefinite">
+              <mpath href="#traceL" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="17s" repeatCount="indefinite">
+              <mpath href="#traceM" />
+            </animateMotion>
+          </circle>
+          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
+            <animateMotion dur="21.5s" repeatCount="indefinite">
+              <mpath href="#traceN" />
+            </animateMotion>
+          </circle>
+        </svg>
+      </div>
       <div className="mx-auto max-w-7xl">
-        <header className="mb-6 rounded-2xl border border-slate-200/80 bg-white/90 p-6 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-700/80">
-                OSI AT A GLANCE
-              </p>
-              <h1
-                className={[
-                  titleFont.className,
-                  "mt-2 bg-gradient-to-r from-sky-600 via-blue-600 to-violet-600 bg-clip-text text-3xl font-black tracking-[0.06em] text-transparent sm:text-5xl",
-                ].join(" ")}
-              >
-                OSI参照モデル 図鑑
-              </h1>
-              <p className="mt-3 max-w-3xl text-sm text-slate-600 sm:text-base">
-                レイヤーを選択すると、下にプロトコル/コマンド/メモを表示します。
-              </p>
-            </div>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-xs text-slate-600">
-              Click a layer, learn faster.
-            </div>
+        <header className="relative z-10 mb-6 rounded-2xl bg-transparent p-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-300/90">
+              OSI AT A GLANCE
+            </p>
+            <h1
+              className={[
+                titleFont.className,
+                "mt-2 text-3xl font-black tracking-[0.06em] text-slate-100 sm:text-5xl",
+              ].join(" ")}
+            >
+              OSI参照モデル 図鑑
+            </h1>
+            <p className="mt-3 max-w-3xl text-sm text-slate-300 sm:text-base">
+              レイヤーを選択すると、下にプロトコル/コマンド/メモを表示します。
+            </p>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-6">
-            <div className="mx-auto w-full max-w-4xl">
-              <div className="space-y-3">
-                {layers.map((layer) => {
-                  const visual = layerVisualById[layer.id];
-                  const selected = openLayerIds.has(layer.id);
-                  const layerTheme = themeById[layer.id];
-                  const LayerIcon = iconById[layer.id];
-                  return (
-                    <details
-                      key={`hero-${layer.id}`}
-                      open={selected}
-                      className="rounded-xl border border-slate-200 bg-white"
-                    >
-                      <summary className="list-none p-0 marker:content-none">
-                        <button
-                          type="button"
-                          onClick={() => toggleLayer(layer.id)}
-                          aria-label={`${layer.id} ${layer.title}`}
-                          className={[
-                            "group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-white transition sm:px-6",
-                            "bg-gradient-to-r",
-                            visual.gradient,
-                            selected
-                              ? "border-white/80"
-                              : "border-white/40",
-                          ].join(" ")}
-                        >
-                          <div className="flex items-center gap-3">
-                            <LayerIcon className="h-5 w-5 text-white" />
-                            <div>
-                              <p
-                                className={[
-                                  titleFont.className,
-                                  "text-xl font-black tracking-wide sm:text-3xl",
-                                ].join(" ")}
-                              >
-                                {layer.title}
-                              </p>
-                              <p className="text-xs font-semibold tracking-wide text-white/90 sm:text-sm">
-                                {visual.subtitle}
-                              </p>
-                            </div>
+          <div className="mt-6">
+            <div className="space-y-3">
+              {layers.map((layer) => {
+                const visual = layerVisualById[layer.id];
+                const selected = openLayerIds.has(layer.id);
+                const layerTheme = themeById[layer.id];
+                const LayerIcon = iconById[layer.id];
+                return (
+                  <details
+                    key={`hero-${layer.id}`}
+                    open={selected}
+                    className="rounded-xl border-2 border-slate-300 bg-white/72"
+                  >
+                    <summary className="list-none p-0 marker:content-none">
+                      <button
+                        type="button"
+                        onClick={() => toggleLayer(layer.id)}
+                        aria-label={`${layer.id} ${layer.title}`}
+                        className={[
+                          "group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-white transition sm:px-6",
+                          visual.bg,
+                          selected
+                            ? "border-white/80"
+                            : "border-white/40",
+                        ].join(" ")}
+                      >
+                        <div className="flex items-center gap-3">
+                          <LayerIcon className="h-5 w-5 text-white" />
+                          <div>
+                            <p
+                              className={[
+                                titleFont.className,
+                                "text-xl font-black tracking-wide sm:text-3xl",
+                              ].join(" ")}
+                            >
+                              {layer.title}
+                            </p>
+                            <p className="text-xs font-semibold tracking-wide text-white/90 sm:text-sm">
+                              {visual.subtitle}
+                            </p>
                           </div>
-                          <ChevronDown
-                            className={[
-                              "h-4.5 w-4.5 rounded-md bg-white/25 p-0.5 text-white transition-transform duration-200 group-hover:bg-white/35",
-                              selected ? "rotate-180" : "rotate-0",
-                            ].join(" ")}
-                            aria-hidden="true"
-                          />
-                        </button>
-                      </summary>
+                        </div>
+                        <ChevronDown
+                          className={[
+                            "h-4.5 w-4.5 rounded-md bg-white/25 p-0.5 text-white transition-transform duration-200 group-hover:bg-white/35",
+                            selected ? "rotate-180" : "rotate-0",
+                          ].join(" ")}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </summary>
 
                       {selected ? (
                         <div className="p-4 sm:p-5">
@@ -256,7 +345,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                           </h2>
 
                         <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1fr]">
-                          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                          <div className="rounded-xl border-2 border-slate-300 bg-slate-50/80 p-4">
                             <h3 className="text-sm font-bold text-slate-700">プロトコル一覧</h3>
                             <p className="mt-2 text-xs text-slate-500">{layer.protocols.length} protocols</p>
                             <div className="mt-3 flex flex-wrap gap-2">
@@ -274,13 +363,13 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                             </div>
                           </div>
 
-                          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                          <div className="rounded-xl border-2 border-slate-300 bg-slate-50/80 p-4">
                             <h3 className="text-sm font-bold text-slate-700">確認用コマンド</h3>
                             {layer.commands.length > 0 ? (
                               <ul className="mt-3 space-y-2">
                                 {layer.commands.map((cmd) => (
                                   <li key={cmd} className="text-sm text-slate-700">
-                                    <code className="rounded-md border border-slate-200 bg-white px-2 py-1 font-mono text-xs text-slate-800">
+                                    <code className="rounded-md border border-slate-300 bg-white px-2 py-1 font-mono text-xs text-slate-800">
                                       {cmd}
                                     </code>
                                   </li>
@@ -292,14 +381,14 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                           </div>
                         </div>
 
-                        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <div className="mt-4 rounded-xl border-2 border-slate-300 bg-slate-50/80 p-4">
                           <h3 className="text-sm font-bold text-slate-700">プロトコル詳細（アコーディオン）</h3>
                           <div className="mt-3 space-y-2">
                             {layer.protocolDetails.length > 0 ? (
                               layer.protocolDetails.map((protocol) => (
                                 <details
                                   key={protocol.name}
-                                  className="group rounded-xl border border-slate-200 bg-white open:bg-slate-50"
+                                  className="group rounded-xl border-2 border-slate-300 bg-white/85 open:bg-slate-50/80"
                                 >
                                   <summary className="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-slate-700 marker:content-none">
                                     <span className="inline-flex items-center gap-2">
@@ -313,7 +402,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                                     </span>
                                   </summary>
                                   <div
-                                    className="osiMemo border-t border-slate-200 px-4 py-3 text-sm text-slate-700"
+                                    className="osiMemo border-t border-slate-300 px-4 py-3 text-sm text-slate-700"
                                     dangerouslySetInnerHTML={{ __html: protocol.detailHtml }}
                                   />
                                 </details>
@@ -324,12 +413,12 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                           </div>
                         </div>
 
-                          <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                          <div className="mt-4 rounded-xl border-2 border-slate-300 bg-slate-50/80 p-4">
                             <h3 className="text-sm font-bold text-slate-700">メモ</h3>
                             {layer.memoHtml ? (
                               <div
                                 className={[
-                                  "osiMemo mt-3 rounded-xl border border-slate-200 p-4 text-slate-700",
+                                  "osiMemo mt-3 rounded-xl border-2 border-slate-300 p-4 text-slate-700",
                                   layerTheme.memoBg,
                                 ].join(" ")}
                                 dangerouslySetInnerHTML={{ __html: layer.memoHtml }}
@@ -340,10 +429,9 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                           </div>
                         </div>
                       ) : null}
-                    </details>
-                  );
-                })}
-              </div>
+                  </details>
+                );
+              })}
             </div>
           </div>
         </header>
