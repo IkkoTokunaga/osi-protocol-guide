@@ -32,13 +32,12 @@ const layers: OsiLayer[] = [
 ];
 
 describe("OsiExplorer", () => {
-  test("renders selected layer details and switches by sidebar click", () => {
+  test("is closed by default and toggles layer by click", () => {
     render(<OsiExplorer layers={layers} />);
 
     expect(
-      screen.getByRole("heading", { name: "L7: アプリケーション層" }),
-    ).toBeInTheDocument();
-    expect(screen.getByText("curl -I https://example.com")).toBeInTheDocument();
+      screen.queryByRole("heading", { name: "L7: アプリケーション層" }),
+    ).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /L4/ }));
 
@@ -46,10 +45,30 @@ describe("OsiExplorer", () => {
       screen.getByRole("heading", { name: "L4: トランスポート層" }),
     ).toBeInTheDocument();
     expect(screen.getByText("ss -tulpn")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /L4/ }));
+    expect(
+      screen.queryByRole("heading", { name: "L4: トランスポート層" }),
+    ).not.toBeInTheDocument();
+  });
+
+  test("keeps already open layer when opening another", () => {
+    render(<OsiExplorer layers={layers} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /L7/ }));
+    fireEvent.click(screen.getByRole("button", { name: /L4/ }));
+
+    expect(
+      screen.getByRole("heading", { name: "L7: アプリケーション層" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "L4: トランスポート層" }),
+    ).toBeInTheDocument();
   });
 
   test("renders protocol detail blocks as accordion items", () => {
     render(<OsiExplorer layers={layers} />);
+    fireEvent.click(screen.getByRole("button", { name: /L7/ }));
 
     const summary = screen.getByText("HTTP / HTTPS");
     const details = summary.closest("details");
