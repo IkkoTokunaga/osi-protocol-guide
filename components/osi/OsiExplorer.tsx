@@ -196,73 +196,33 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
           <path id="traceN" className="packetLine" d="M260 800 V748 H330 V720 H410 V660 H460 V560" />
 
           <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="14s" repeatCount="indefinite">
+            <animateMotion dur="20s" begin="-3.8s" repeatCount="indefinite">
               <mpath href="#traceA" />
             </animateMotion>
           </circle>
           <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="19s" repeatCount="indefinite">
-              <mpath href="#traceB" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="16s" repeatCount="indefinite">
+            <animateMotion dur="23s" begin="-11.4s" repeatCount="indefinite">
               <mpath href="#traceC" />
             </animateMotion>
           </circle>
           <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="21s" repeatCount="indefinite">
-              <mpath href="#traceD" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="17s" repeatCount="indefinite">
+            <animateMotion dur="24s" begin="-6.2s" repeatCount="indefinite">
               <mpath href="#traceE" />
             </animateMotion>
           </circle>
           <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="23s" repeatCount="indefinite">
-              <mpath href="#traceF" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="24s" repeatCount="indefinite">
-              <mpath href="#traceG" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="21s" repeatCount="indefinite">
+            <animateMotion dur="26s" begin="-14.7s" repeatCount="indefinite">
               <mpath href="#traceH" />
             </animateMotion>
           </circle>
           <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="16.5s" repeatCount="indefinite">
-              <mpath href="#traceI" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="18s" repeatCount="indefinite">
-              <mpath href="#traceJ" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="15s" repeatCount="indefinite">
+            <animateMotion dur="18s" begin="-9.1s" repeatCount="indefinite">
               <mpath href="#traceK" />
             </animateMotion>
           </circle>
           <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="20s" repeatCount="indefinite">
+            <animateMotion dur="22s" begin="-12.6s" repeatCount="indefinite">
               <mpath href="#traceL" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="17s" repeatCount="indefinite">
-              <mpath href="#traceM" />
-            </animateMotion>
-          </circle>
-          <circle className="packetRunner" r="6" fill="url(#packetOrb)">
-            <animateMotion dur="21.5s" repeatCount="indefinite">
-              <mpath href="#traceN" />
             </animateMotion>
           </circle>
         </svg>
