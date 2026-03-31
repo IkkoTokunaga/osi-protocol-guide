@@ -342,7 +342,7 @@ export default function OsiExplorer({ layers }: { layers: OsiLayer[] }) {
                         </div>
 
                         <div className="mt-4 rounded-xl border-2 border-slate-300 bg-slate-50/80 p-4">
-                          <h3 className="text-sm font-bold text-slate-700">プロトコル詳細（アコーディオン）</h3>
+                          <h3 className="text-sm font-bold text-slate-700">プロトコル詳細</h3>
                           <div className="mt-3 space-y-2">
                             {layer.protocolDetails.length > 0 ? (
                               layer.protocolDetails.map((protocol) => (
