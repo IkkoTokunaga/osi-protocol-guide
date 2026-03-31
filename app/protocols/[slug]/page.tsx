@@ -135,14 +135,73 @@ export default async function ProtocolDetailPage({
     protocol.checkPoint,
     protocol.practicalUse,
   );
-  const accentByLayer: Record<OsiLayerId, { soft: string; strong: string; title: string }> = {
-    L7: { soft: "bg-rose-100", strong: "from-rose-500 to-pink-500", title: "text-rose-300" },
-    L6: { soft: "bg-violet-100", strong: "from-violet-500 to-fuchsia-500", title: "text-violet-300" },
-    L5: { soft: "bg-cyan-100", strong: "from-cyan-500 to-sky-500", title: "text-cyan-300" },
-    L4: { soft: "bg-emerald-100", strong: "from-emerald-500 to-teal-500", title: "text-emerald-300" },
-    L3: { soft: "bg-amber-100", strong: "from-amber-500 to-orange-500", title: "text-amber-300" },
-    L2: { soft: "bg-orange-100", strong: "from-orange-500 to-red-500", title: "text-orange-300" },
-    L1: { soft: "bg-zinc-200", strong: "from-zinc-500 to-slate-600", title: "text-zinc-200" },
+  const accentByLayer: Record<
+    OsiLayerId,
+    {
+      solid: string;
+      heroGlow: string;
+      chip: string;
+      cardRing: string;
+      quizSoft: string;
+      title: string;
+    }
+  > = {
+    L7: {
+      solid: "bg-rose-500",
+      heroGlow: "shadow-rose-500/25",
+      chip: "bg-rose-500/20 text-rose-200 border-rose-300/40",
+      cardRing: "border-rose-300/30",
+      quizSoft: "bg-rose-500/10",
+      title: "text-rose-200",
+    },
+    L6: {
+      solid: "bg-violet-500",
+      heroGlow: "shadow-violet-500/25",
+      chip: "bg-violet-500/20 text-violet-200 border-violet-300/40",
+      cardRing: "border-violet-300/30",
+      quizSoft: "bg-violet-500/10",
+      title: "text-violet-200",
+    },
+    L5: {
+      solid: "bg-cyan-500",
+      heroGlow: "shadow-cyan-500/25",
+      chip: "bg-cyan-500/20 text-cyan-200 border-cyan-300/40",
+      cardRing: "border-cyan-300/30",
+      quizSoft: "bg-cyan-500/10",
+      title: "text-cyan-200",
+    },
+    L4: {
+      solid: "bg-emerald-500",
+      heroGlow: "shadow-emerald-500/25",
+      chip: "bg-emerald-500/20 text-emerald-200 border-emerald-300/40",
+      cardRing: "border-emerald-300/30",
+      quizSoft: "bg-emerald-500/10",
+      title: "text-emerald-200",
+    },
+    L3: {
+      solid: "bg-amber-500",
+      heroGlow: "shadow-amber-500/25",
+      chip: "bg-amber-500/20 text-amber-100 border-amber-300/40",
+      cardRing: "border-amber-300/30",
+      quizSoft: "bg-amber-500/10",
+      title: "text-amber-100",
+    },
+    L2: {
+      solid: "bg-orange-500",
+      heroGlow: "shadow-orange-500/25",
+      chip: "bg-orange-500/20 text-orange-100 border-orange-300/40",
+      cardRing: "border-orange-300/30",
+      quizSoft: "bg-orange-500/10",
+      title: "text-orange-100",
+    },
+    L1: {
+      solid: "bg-red-500",
+      heroGlow: "shadow-zinc-500/25",
+      chip: "bg-zinc-500/20 text-zinc-100 border-zinc-300/40",
+      cardRing: "border-zinc-300/30",
+      quizSoft: "bg-zinc-500/10",
+      title: "text-zinc-100",
+    },
   };
   const accent = accentByLayer[layer.id];
   const levelTone: Record<ChoiceQuiz["level"], string> = {
@@ -183,111 +242,140 @@ export default async function ProtocolDetailPage({
           </circle>
         </svg>
       </div>
-      <div className="mx-auto max-w-5xl space-y-5">
-        <div className="overflow-hidden rounded-2xl border border-slate-300 bg-white/90 shadow-xl shadow-slate-950/20">
-          <div className={["h-2 w-full bg-gradient-to-r", accent.strong].join(" ")} />
-          <div className="p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600/90">
-            OSI AT A GLANCE
+      <div className="mx-auto max-w-6xl space-y-6">
+        <div
+          className={[
+            "rounded-2xl border border-white/25 px-5 py-3 text-white shadow-lg",
+            accent.solid,
+          ].join(" ")}
+        >
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/80">
+            Current OSI Layer
           </p>
-          <p className="mt-2 text-xs uppercase tracking-[0.24em] text-slate-500">
-            {layer.id} / {layer.title}
+          <p className="mt-1 text-xl font-black tracking-wide sm:text-2xl">
+            {layer.id}: {layer.title}
           </p>
-          <h1 className={["mt-2 text-3xl font-black tracking-[0.06em] sm:text-4xl", accent.title].join(" ")}>
-            {protocol.name} 深掘りガイド
-          </h1>
-          <p className="mt-3 text-sm text-slate-700">
-            CCNA対策の観点と実運用での使い方をセットで確認し、試験と現場の両方で使える知識にします。
-          </p>
-          <Link
-            href="/"
-            className="mt-4 inline-flex rounded-md border border-slate-300 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-200"
-          >
-            一覧へ戻る
-          </Link>
-        </div>
         </div>
 
-        <section className="rounded-2xl border-2 border-slate-300 bg-white/90 p-6">
-          <h2 className="text-lg font-bold text-slate-800">概要</h2>
-          <div className="osiMemo mt-3 text-sm text-slate-700" dangerouslySetInnerHTML={{ __html: protocol.detailHtml }} />
-        </section>
-
-        <section className="rounded-2xl border-2 border-slate-300 bg-white/90 p-6">
-          <h2 className="text-lg font-bold text-slate-800">CCNA対策ポイント</h2>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            {ccnaPoints.map((point) => (
-              <li key={point} className="rounded-md border border-slate-300 bg-slate-100/80 px-3 py-2">
-                {point}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="rounded-2xl border-2 border-slate-300 bg-white/90 p-6">
-          <h2 className="text-lg font-bold text-slate-800">実戦での使い方</h2>
-          <div className="mt-3 space-y-3 text-sm text-slate-700">
-            <p>
-              <span className="font-semibold text-slate-900">障害兆候:</span>{" "}
-              {protocol.practicalUse || "セッション異常・遅延・到達性の低下を観測したら、対象プロトコルの状態を優先的に確認します。"}
+        <header
+          className={[
+            "overflow-hidden rounded-3xl border border-white/20 bg-slate-900/70 backdrop-blur-md shadow-2xl",
+            accent.heroGlow,
+          ].join(" ")}
+        >
+          <div className={["h-1.5 w-full", accent.solid].join(" ")} />
+          <div className="p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-300/90">
+              OSI AT A GLANCE
             </p>
-            <p>
-              <span className="font-semibold text-slate-900">確認ポイント:</span>{" "}
-              {protocol.checkPoint || "状態・ログ・統計を1つずつ確認し、再現条件を狭めます。"}
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <span className={["rounded-full border px-2.5 py-1 text-xs font-semibold", accent.chip].join(" ")}>
+                {layer.id}
+              </span>
+              <span className="rounded-full border border-slate-600 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-300">
+                {layer.title}
+              </span>
+            </div>
+            <h1 className={["mt-4 text-3xl font-black tracking-[0.06em] sm:text-5xl", accent.title].join(" ")}>
+              {protocol.name}
+            </h1>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              CCNA対策と実務トラブルシュートを一画面で往復できるように、要点・運用・演習を再構成しています。
             </p>
-            <div>
-              <p className="font-semibold text-slate-900">関連コマンド</p>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {layer.commands.map((cmd) => (
-                  <li key={cmd} className="rounded border border-slate-300 bg-slate-100 px-2 py-1 font-mono text-xs text-slate-700">
-                    {cmd}
+            <Link
+              href="/"
+              className="mt-5 inline-flex rounded-lg border border-slate-500 bg-slate-800/80 px-4 py-2 text-xs font-semibold text-slate-100 transition hover:bg-slate-700"
+            >
+              一覧へ戻る
+            </Link>
+          </div>
+        </header>
+
+        <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="space-y-4">
+            <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+              <h2 className="text-lg font-bold text-slate-100">概要</h2>
+              <div className="osiMemo mt-3 text-sm text-slate-200" dangerouslySetInnerHTML={{ __html: protocol.detailHtml }} />
+            </section>
+
+            <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+              <h2 className="text-lg font-bold text-slate-100">CCNA対策ポイント</h2>
+              <ul className="mt-3 space-y-2 text-sm text-slate-200">
+                {ccnaPoints.map((point) => (
+                  <li key={point} className="rounded-lg border border-slate-700 bg-slate-800/70 px-3 py-2">
+                    {point}
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-        </section>
+            </section>
 
-        <section className="rounded-2xl border-2 border-slate-300 bg-white/90 p-6">
-          <h2 className="text-lg font-bold text-slate-800">理解度チェック</h2>
-          <div className="mt-3 grid gap-3 md:grid-cols-2">
-            {quizzes.map((quiz, idx) => (
-              <details
-                key={quiz.question}
-                className={[
-                  "rounded-xl border border-slate-300 p-4 shadow-sm",
-                  accent.soft,
-                ].join(" ")}
-              >
-                <summary className="cursor-pointer text-sm font-semibold text-slate-800">
-                  <span
-                    className={[
-                      "mr-2 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold",
-                      levelTone[quiz.level],
-                    ].join(" ")}
-                  >
-                    {quiz.level}
-                  </span>
-                  Q{idx + 1}. {quiz.question}
-                </summary>
-                <ul className="mt-2 space-y-1 text-sm text-slate-700">
-                  {quiz.choices.map((choice) => (
-                    <li key={choice.key}>
-                      {choice.key}. {choice.text}
-                    </li>
-                  ))}
-                </ul>
-                <details className="mt-3 rounded-md border border-slate-300 bg-white/80 px-3 py-2">
-                  <summary className="cursor-pointer text-xs font-semibold text-slate-700">
-                    答えを見る
-                  </summary>
-                  <p className="mt-2 text-sm font-semibold text-emerald-700">答え: {quiz.answer}</p>
-                  <p className="mt-1 text-sm text-slate-600">{quiz.explanation}</p>
-                </details>
-              </details>
-            ))}
+            <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+              <h2 className="text-lg font-bold text-slate-100">実戦での使い方</h2>
+              <div className="mt-3 space-y-3 text-sm text-slate-200">
+                <p>
+                  <span className="font-semibold text-white">障害兆候:</span>{" "}
+                  {protocol.practicalUse || "セッション異常・遅延・到達性の低下を観測したら、対象プロトコルの状態を優先的に確認します。"}
+                </p>
+                <p>
+                  <span className="font-semibold text-white">確認ポイント:</span>{" "}
+                  {protocol.checkPoint || "状態・ログ・統計を1つずつ確認し、再現条件を狭めます。"}
+                </p>
+                <div>
+                  <p className="font-semibold text-white">関連コマンド</p>
+                  <ul className="mt-2 flex flex-wrap gap-2">
+                    {layer.commands.map((cmd) => (
+                      <li key={cmd} className="rounded border border-slate-600 bg-slate-800 px-2 py-1 font-mono text-xs text-slate-200">
+                        {cmd}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
+
+          <section className={["rounded-2xl border bg-slate-900/75 p-5 backdrop-blur-sm", accent.cardRing].join(" ")}>
+            <h2 className="text-lg font-bold text-slate-100">理解度チェック</h2>
+            <p className="mt-1 text-xs text-slate-400">問題を開いて選択肢を確認し、答えは「答えを見る」で表示します。</p>
+            <div className="mt-3 space-y-3">
+              {quizzes.map((quiz, idx) => (
+                <details
+                  key={quiz.question}
+                  className={[
+                    "rounded-xl border border-slate-600/80 p-4 shadow-sm",
+                    accent.quizSoft,
+                  ].join(" ")}
+                >
+                  <summary className="cursor-pointer text-sm font-semibold text-slate-100">
+                    <span
+                      className={[
+                        "mr-2 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold",
+                        levelTone[quiz.level],
+                      ].join(" ")}
+                    >
+                      {quiz.level}
+                    </span>
+                    Q{idx + 1}. {quiz.question}
+                  </summary>
+                  <ul className="mt-2 space-y-1 text-sm text-slate-200">
+                    {quiz.choices.map((choice) => (
+                      <li key={choice.key}>
+                        {choice.key}. {choice.text}
+                      </li>
+                    ))}
+                  </ul>
+                  <details className="mt-3 rounded-md border border-slate-500 bg-slate-900/70 px-3 py-2">
+                    <summary className="cursor-pointer text-xs font-semibold text-slate-200">
+                      答えを見る
+                    </summary>
+                    <p className="mt-2 text-sm font-semibold text-emerald-300">答え: {quiz.answer}</p>
+                    <p className="mt-1 text-sm text-slate-300">{quiz.explanation}</p>
+                  </details>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     </main>
   );
